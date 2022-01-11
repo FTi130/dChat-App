@@ -3,3 +3,4 @@
 /src/secret.js
 
 .DS_Store
+.env

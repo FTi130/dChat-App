@@ -10,6 +10,9 @@
 
     const secretThing = config.key;
 
+    const secret = __myapp.env.API_URL
+    const mssg = process.env["SECRET_KEY "]
+
     // function makeId(length) {
     //     var result           = '';
     //     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -55,7 +58,7 @@
             .once(async (data, id) => {
                 if (data) {
                     // Key for end-to-end encryption
-                    const key = secretThing;
+                    const key = mssg;
                     var message = {
                         // transform the data
                         who: await db.user(data).get('alias'), // a user might lie who they are! So let the user system detect whose data it is.
@@ -74,7 +77,7 @@
             });
     });
     async function sendMessage() {
-        const secret = await SEA.encrypt(newMessage, secretThing);
+        const secret = await SEA.encrypt(newMessage, mssg);
         const message = user.get('all').set({ what: secret });
         const index = new Date().toISOString();
         db.get('chat').get(index).put(message);
